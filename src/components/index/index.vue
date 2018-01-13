@@ -1,11 +1,10 @@
 <template>
   <div class="index">
-      <v-slide-show></v-slide-show>
       <div class="main">
         <section class="hot">
-          <h1 class="title"><span></span>热门文档</h1>
+          <h1 class="title"><img src="./hot-logo.png" class="hot-logo" alt="hot-logo">热门文档</h1>
           <article class="content">
-            <figure class="img"></figure>
+            <figure class="img"><img src="./hot.jpg" alt="hot"  width="454" height="327"></figure>
             <div class="list">
               <table>
                 <thead>
@@ -42,9 +41,9 @@
           </article>
         </section>
         <section class="latest">
-          <h1 class="title"><span class="hot-logo"></span>热门文档</h1>
+          <h1 class="title"><img src="./latest-logo.png" class="latest-logo" />最新上传</h1>
           <article class="content">
-            <figure class="img"></figure>
+            <figure class="img"><img src="./latest.jpg" alt="latest" width="454" height="327"></figure>
             <div class="list">
               <table>
                 <thead>
@@ -82,7 +81,7 @@
         </section>
         <section class="public">
           <article class="content">
-            <figure class="img"></figure>
+            <figure class="img"><img src="./public.jpg" alt="public" width="526" height="350"></figure>
             <div class="detail">
               <div class="media">
                 <h1 class="media-title">公共课</h1>
@@ -101,7 +100,7 @@
                 <div class="media-button">点击查看</div>
               </div>
             </div>
-            <figure class="img"></figure>
+            <figure class="img"><img src="./professional.jpg" alt="professional" width="526" height="350"></figure>
           </article>
         </section>
       </div>
@@ -109,13 +108,8 @@
 </template>
 
 <script>
-import slideShow from "components/slideshow/slideshow.vue";
 
-export default {
-  components: {
-    "v-slide-show": slideShow
-  }
-};
+export default {}
 </script>
 
 <style lang="sass">
@@ -126,9 +120,15 @@ export default {
     .hot,.latest
       margin: 30px auto 0
       .title
-        font-size: 20px
+        font-size: 40px
         height: 64px
         line-height: 64px
+        font-family: NSimSun
+        .hot-logo,.latest-logo
+          width: 63px
+          height: 63px
+          vertical-align: bottom
+          margin-right: 20px
       .content
         margin-left: 11px
         margin-top: 39px
@@ -136,9 +136,9 @@ export default {
         .img
           flex: 0 0 454px
           height: 327px
-          background: yellow
         .list
           flex: 1 0 auto
+          background: #f4f4f4
     .public,.professional
       margin: 30px auto 60px
       .content
@@ -147,11 +147,10 @@ export default {
         .img
           flex: 0 0 526px
           height: 350px
-          background: yellow
         .detail
+          background: #f4f4f4
           .media
             margin-top: 30px
             margin-left: 78px
-
 </style>
 

@@ -36,16 +36,24 @@ export default {}
 <style lang="sass">
 .footer
   width: 100%
-  height: 250px
-  background: #444749
+  height: 289px
+  background: #333333
   overflow: auto
   .inner
     width: 1280px
-    margin: 20px auto
+    margin: 40px auto 0
     display: flex
     &>div
       flex: 1 0 auto
-  .title
-    font-weight: 700
-
+    .about,.friend,.focus
+      &>li:not(:first-child)
+        color: #ababab
+        font-family: NSimSun
+        font-size: 26.6px
+        margin-top: 35px
+      .title
+        font-weight: 700
+        font-size: 28.17px
+        font-family: NSimSun
+        color: white
 </style>

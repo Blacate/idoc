@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-      <span class="logo">iDocument</span>
+      <div class="logo"><img src="./logo.png" alt="logo"></div>
       <nav class="nav">
           <ul class="menu">
               <li class="menu-item">首页</li>
@@ -11,7 +11,7 @@
       <form class="search">
           <input type="text" class="search-item" />
           <input type="hidden" />
-          <span class="search-button">+</span>
+          <img src="./search.png" alt="search" class="search-button" >
       </form>
   </header>
 </template>
@@ -19,22 +19,21 @@
 export default {}
 </script>
 <style lang="sass">
-    $themeColor: #87CEFA
-    .header 
+    $themeColor: #00a0e9
+    .header
         height: 100px
         width: 1280px
         margin: 0 auto
-        .logo 
-            height: 100px
-            line-height: 100px
-            font-size: 60px
-            color: $themeColor        
-        .nav 
+        .logo
+            display: inline-block
+            margin-top: 35px
+        .nav
             display: inline-block
             margin-top: 27px
-            margin-left: 100px
+            margin-left: 148px
+            vertical-align: top
             .menu
-                .menu-item 
+                .menu-item
                     width: 120px
                     height: 60px
                     display: inline-block
@@ -42,29 +41,28 @@ export default {}
                     border-radius: 6px
                     background: white
                     color: black
-                    font-size: 30px
+                    font-size: 23.33px
+                    font-family: SimSun
                     line-height: 60px
                     text-align: center
-                    &:hover 
+                    &:hover
                         background: $themeColor
                         color: white
+                        cursor: pointer
         .search
             width: 276px
             height: 38px
             float: right
             margin-top: 31px
-            border: 2px solid gray
-            border-radius: 4px
             .search-item
                 width: 100%
                 height: 100%
+                border: 2px solid gray
+                border-radius: 8px
                 float: left
             .search-button
-                width: 30px
-                height: 40px
-                float: right
-                margin-left: -41px
-                margin-right: 11px
-                line-height: 40px
+                height: 25px
+                margin-top: 8px
+                margin-left: -31px
 </style>
 

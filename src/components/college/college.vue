@@ -1,5 +1,5 @@
 <template>
-  <section class="public">
+  <section class="college">
     <router-link :to="'/course/'+course._id" class="media" v-for="(course,index) in courses" :key="index">
       <figure>
         <img :src="course.qiniuPath" alt="" class="media-img">
@@ -14,7 +14,7 @@ import { API } from 'config'
 
 export default {
   created () {
-    this.$http.get(`${API}/search/courses?type=general`).then((res) => {
+    this.$http.get(`${API}/colleges/${this.$route.params.collegeId}/courses/docs`).then((res) => {
       let data = res.body
       this.courses = data.courses
     })
@@ -28,7 +28,7 @@ export default {
 </script>
 
 <style lang="sass">
-.public
+.college
   width: 1280px
   margin: 10px auto 100px
   display: flex

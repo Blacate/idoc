@@ -4,7 +4,7 @@ import Index from '@/components/index/index'
 import Public from '@/components/public/public'
 import Professional from '@/components/professional/professional'
 import Course from '@/components/course/course'
-import College from '@/components/college/college'
+import Search from '@/components/search/search'
 
 Vue.use(Router)
 
@@ -31,9 +31,9 @@ export default new Router({
       component: Course
     },
     {
-      path: '/professional/college/:collegeId',
-      name: 'college',
-      component: College
+      path: '/search',
+      name: 'search',
+      component: Search
     }
   ]
 })

@@ -1,14 +1,17 @@
 <template>
   <div class="slideshow">
     <div class="slide">
-      <div class="slide-group" ref="slideGroup" v-if="banners.length">
-        <div class="slide-item"><a :href="banners[total - 1].bannerLink" class="slide-item-a"><img :src="banners[total - 1].bannerPic" :alt="banners[total - 1].bannerName"></a></div>
-        <div class="slide-item" v-for="(banner, index) in banners" :key="index"><a :href="banner.bannerLink" class="slide-item-a"><img :src="banner.bannerPic" :alt="banner.bannerName" /></a></div>
-        <div class="slide-item"><a :href="banners[0].bannerLink" class="slide-item-a"><img :src="banners[0].bannerPic" :alt="banners[0].bannerName"></a></div>
-      </div>
+      <transition-group name="slide-banner" tag="ul" class="slide-group" ref="slideGroup" v-if="banners.length">
+        <li class="slide-item" v-for="(banner,index) in banners" :key="banner._id"  :class="{hide:index == needToHide}">
+          <a :href="banner.bannerLink" class="slide-item-a">
+            <img :src="banner.bannerPic" :alt="banner.bannerName" />
+          </a>
+        </li>
+      </transition-group>
+      <div style="display:none" class="slide-banner-move"></div>
     </div>
     <div class="dot">
-      <div class="dot-item" v-for="dot in total" :key="dot" :class="{ dotItemActive: (now + total - 1) % total + 1 === dot}"></div>
+      <div class="dot-item" v-for="dot in total" :key="dot" :class="{ dotItemActive: dots[dot - 1]}"></div>
     </div>
     <div class="slide-left"><img src="./slide-left.png" alt="" @click="last_pic"></div>
     <div class="slide-right"><img src="./slide-left.png" alt="" class="slide-right-img" @click="next_pic"></div>
@@ -21,59 +24,39 @@ import { API } from 'config'
 export default {
   data () {
     return {
-      now: 1,
       total: 1,
-      banners: {}
+      banners: [],
+      needToHide: -1,
+      dots: []
     }
   },
   methods: {
-    _init_slide () {
-      // 初始化，设置group宽度以及第一张显示的图片
-      let el = this.$refs.slideGroup
-      el.style.width = `${this.total * 1280}px`
-      el.style.webkitTransform = `translate(-${this.now * 1280}px,0)`
-      el.style.transform = `translate(-${this.now * 1280}px,0)`
-      // 绑定transitionend事件，检查为最后一张或第0张图片
-      el.addEventListener('transitionend', check)
-      let self = this
-      function check () {
-        if (self.now === self.total + 1 || self.now === 0) {
-          if (self.now === 0) {
-            self.now = self.total
-          } else {
-            self.now = 1
-          }
-          el.style['transition-property'] = 'transform'
-          el.style['transition-duration'] = '0ms'
-          el.style.webkitTransform = `translate(-${self.now * 1280}px,0)`
-          el.style.transform = `translate(-${self.now * 1280}px,0)`
-        }
-      }
+    last_pic: function () {
+      this.needToHide = 0
+      this.banners.unshift(this.banners.pop())
+      this.dots.push(this.dots.shift())
     },
-    next_pic () {
-      let el = this.$refs.slideGroup
-      this.now++
-      el.style['transition-property'] = 'transform'
-      el.style['transition-duration'] = '500ms'
-      el.style.webkitTransform = `translate(-${this.now * 1280}px,0)`
-      el.style.transform = `translate(-${this.now * 1280}px,0)`
-    },
-    last_pic () {
-      let el = this.$refs.slideGroup
-      this.now--
-      el.style['transition-property'] = 'transform'
-      el.style['transition-duration'] = '500ms'
-      el.style.webkitTransform = `translate(-${this.now * 1280}px,0)`
-      el.style.transform = `translate(-${this.now * 1280}px,0)`
+    next_pic: function () {
+      this.needToHide = this.total - 1
+      this.banners.push(this.banners.shift())
+      this.dots.unshift(this.dots.pop())
     }
   },
   created () {
     this.$http.get(`${API}/banners`).then((response) => {
       this.banners = response.body.banners
+      // 修改图片连接
+      this.banners[0].bannerPic = 'https://pic.blacat.top/idoc.png'
+      this.banners[1].bannerPic = 'https://pic.blacat.top/duohuo.png'
+      this.banners[2].bannerPic = 'https://pic.blacat.top/study.png'
       this.total = response.body.total
-      this.$nextTick(() => {
-        this._init_slide()
-      })
+      // 生成底部对应的点
+      this.dots.length = this.total
+      this.dots.fill(0)
+      this.dots[0] = 1
+      setInterval(() => {
+        this.next_pic()
+      }, 5000)
     })
   }
 }
@@ -87,21 +70,29 @@ export default {
     .slide
       width: 1280px
       height: 500px
-      margin: 0 auto
+      position: absolute
+      left: 50%
+      margin-left: -640px
       display: block
       overflow: hidden
       .slide-group
         width: 3000px
+        position: relative
+        left: -1280px
         margin-top: 60px
         display: block
         white-space: nowrap
-      .slide-item
-        width: 1280px
-        display: inline-block
-        text-align: center
-        vertical-align: middle
-        .slide-item-a
+        .slide-item
+          width: 1280px
           display: inline-block
+          text-align: center
+          vertical-align: middle
+          .slide-item-a
+            display: inline-block
+          &.hide
+            visibility: hidden
+      .slide-banner-move
+        transition: transform 1s
     .dot
       position: absolute
       display: inline-block

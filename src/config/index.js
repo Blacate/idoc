@@ -1,2 +1,2 @@
-const API = 'https://idoc-api.duohuo.org/api/v1'
+const API = '/api'
 export { API }

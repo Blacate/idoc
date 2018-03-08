@@ -1,6 +1,5 @@
 <template>
-  <section class="course">
-    <h1 class="title">{{course.courseName}}</h1>
+  <section class="search">
     <div class="main" v-if="docs.length">
       <a class="media" v-for="(doc,index) in docs" :key="index" :href="'https://idoc-api.duohuo.org/api/v1/download/'+ doc._id">
         <figure>
@@ -19,28 +18,22 @@ import {API} from 'config'
 export default {
   data () {
     return {
-      docs: [],
-      course: {}
+      docs: []
     }
   },
   created () {
-    this.$http.get(`${API}/courses/${this.$route.params.courseId}/docs`).then((res) => {
+    let query = this.$route.query.q
+    this.$http.get(`${API}/search/docs?q=${query}`).then((res) => {
       this.docs = res.body.docs
-      this.course = res.body.course
     })
   }
 }
 </script>
 
 <style lang="sass">
-.course
+.search
   width: 1280px
   margin: 10px auto 100px
-  .title
-    margin-left: 28px
-    font-family: "Microsoft YaHei"
-    font-size: 30px
-    font-weight: 700
   .main
     display: flex
     flex-wrap: wrap

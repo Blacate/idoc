@@ -12,7 +12,7 @@
                 </thead>
                 <tbody class="tbody">
                   <tr v-for="(doc,index) in hotest" :key="index">
-                    <td class="doc-title"><img src="./arrow.png" alt="arrow">&nbsp;<a to="/" class="link">{{doc.title}}</a> </td>
+                    <td class="doc-title"><img src="./arrow.png" alt="arrow">&nbsp;<a :href="doc.link" class="link">{{doc.title}}</a> </td>
                     <td class="times">{{doc.downloads}}</td>
                   </tr>
                 </tbody>
@@ -31,7 +31,7 @@
                 </thead>
                 <tbody class="tbody">
                   <tr v-for="(doc,index) in latest" :key="index">
-                    <td class="doc-title"><img src="./arrow.png" alt="arrow">&nbsp;<a to="/" class="link">{{doc.title}}</a> </td>
+                    <td class="doc-title"><img src="./arrow.png" alt="arrow">&nbsp;<a :href="doc.link" class="link">{{doc.title}}</a> </td>
                     <td>{{doc.updateTime | handleTime | timeParse}}</td>
                   </tr>
                 </tbody>

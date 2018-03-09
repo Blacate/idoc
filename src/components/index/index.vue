@@ -4,9 +4,10 @@
         <section class="hot">
           <h1 class="title"><img src="./hot-logo.png" class="hot-logo" alt="hot-logo">热门文档</h1>
           <article class="content">
-            <figure class="img"><img src="./hot.jpg" alt="hot"  width="454" height="327"></figure>
+            <figure class="img"><img src="./hot.jpg" alt="hot"  width="405" height="291"></figure>
             <div class="list">
               <table class="table">
+                <col width="578px" />
                 <thead class="thead">
                   <tr><th class="doc-name">&nbsp;文档名称</th><th class="download-times">下载次数</th></tr>
                 </thead>
@@ -23,9 +24,10 @@
         <section class="latest">
           <h1 class="title"><img src="./latest-logo.png" class="latest-logo" />最新上传</h1>
           <article class="content">
-            <figure class="img"><img src="./latest.jpg" alt="latest" width="454" height="327"></figure>
+            <figure class="img"><img src="./latest.jpg" alt="latest" width="405" height="291"></figure>
             <div class="list">
               <table class="table">
+                <col width="578px" />
                 <thead class="thead">
                   <tr><th class="doc-name">&nbsp;文档名称</th><th class="upload-time">上传时间</th></tr>
                 </thead>
@@ -97,35 +99,35 @@ export default {
 <style lang="sass">
 .index
   .main
-    width: 1280px
+    width: 1138px
     margin: auto
     .hot,.latest
-      margin: 50px auto 0
+      margin: 45px auto 0
       .title
-        font-size: 40px
-        height: 64px
-        line-height: 64px
+        font-size: 36px
+        height: 57px
+        line-height: 57px
         font-family: NSimSun
         .hot-logo,.latest-logo
-          width: 63px
-          height: 63px
+          width: 57px
+          height: 57px
           vertical-align: bottom
           margin-right: 20px
       .content
-        margin-left: 11px
-        margin-top: 39px
+        margin-left: 0
+        margin-top: 30px
         display: flex
         .img
-          flex: 0 0 454px
-          height: 327px
+          flex: 0 0 405px
+          height: 291px
         .list
           flex: 1 0 auto
           .table
             margin-left: 35px
-            width: 100%
+            width: 698px
             .thead
               text-align: left
-              font-size: 30px
+              font-size: 27px
               font-family: NSimSun
               .doc-name
                 padding-left: 12px
@@ -138,20 +140,19 @@ export default {
                 font-weight: 700
             .tbody
               font-family: NSimSun
-              font-size: 23.38px
-              line-height: 48px
+              font-size: 22px
+              line-height: 45px
               .link
                 color: black
               .times
                 padding-left: 36px
               .doc-title
-                width: 660px
                 overflow: hidden
                 white-space: nowrap
     .public-index,.professional-index
       margin: 60px auto 60px
       .content
-        margin-left: 11px
+        margin-left: 0
         display: flex
         .img
           flex: 0 0 526px
@@ -160,8 +161,8 @@ export default {
           background: #f4f4f4
           flex: 1 0 auto
           .media
-            margin-top: 30px
-            margin-left: 100px
+            margin-top: 40px
+            margin-left: 70px
             .media-title
               font-size: 30px
               font-weight: 600

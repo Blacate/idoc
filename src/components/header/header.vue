@@ -26,6 +26,13 @@ export default {
     return {
       keywords: ''
     }
+  },
+  watch: {
+    '$route.path': function () {
+      if (this.$route.path !== '/search') {
+        this.keywords = ''
+      }
+    }
   }
 }
 </script>
@@ -33,7 +40,7 @@ export default {
   $themeColor: #00a0e9
   .header
     height: 100px
-    width: 1280px
+    width: 1138px
     margin: 0 auto
     .logo
       display: inline-block
@@ -41,14 +48,14 @@ export default {
     .nav
       display: inline-block
       margin-top: 27px
-      margin-left: 148px
+      margin-left: 120px
       vertical-align: top
       .menu
         .menu-item
           width: 120px
           height: 60px
           display: inline-block
-          margin-right: 47px
+          margin-right: 35px
           background: white
           line-height: 60px
           text-align: center

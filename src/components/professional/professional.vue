@@ -77,7 +77,7 @@ export default {
 
 <style lang="sass">
 .professional
-  width: 1280px
+  width: 1138px
   margin: 10px auto 100px
   display: flex
   align-items: stretch
@@ -103,7 +103,7 @@ export default {
     flex: 1 0 auto
     background: #f7f7f5
     .content
-      width: 980px
+      width: 838px
       margin-top: 30px
       display: flex
       flex-wrap: wrap
@@ -111,7 +111,7 @@ export default {
       .media
         width: 180px
         height: 140px
-        margin: 30px 38px
+        margin: 30px 40px
         box-shadow: 2px 5px 5px 0 rgba(100,146,188,.3)
         .media-img
           width: 180px

@@ -2,12 +2,13 @@
   <section class="course">
     <h1 class="title">{{course.courseName}}</h1>
     <div class="main" v-if="docs.length">
-      <a class="media" v-for="(doc,index) in docs" :key="index" :href="'https://idoc-api.duohuo.org/api/v1/download/'+ doc._id">
+      <a class="media" v-for="(doc,index) in docs" :key="index" :href="'https://idoc.api.blacat.top/api/v1/download/'+ doc._id">
         <figure>
           <img src="./doc1.jpg" alt="" class="media-img">
           <figcaption class="media-title">{{doc.title}}</figcaption>
         </figure>
-    </a>
+      </a>
+      <a class="media" style="visibility:hidden;" v-for="i in supplement" :key="i + docs.length"></a>
     </div>
     <p class="tip" v-else>没有找到任何文档！</p>
   </section>
@@ -20,13 +21,15 @@ export default {
   data () {
     return {
       docs: [],
-      course: {}
+      course: {},
+      supplement: 0
     }
   },
   created () {
     this.$http.get(`${API}/courses/${this.$route.params.courseId}/docs`).then((res) => {
       this.docs = res.body.docs
       this.course = res.body.course
+      this.supplement = 4 - (this.docs.length + 4) % 5
     })
   }
 }
@@ -34,7 +37,7 @@ export default {
 
 <style lang="sass">
 .course
-  width: 1280px
+  width: 1138px
   margin: 10px auto 100px
   .title
     margin-left: 28px
@@ -44,6 +47,7 @@ export default {
   .main
     display: flex
     flex-wrap: wrap
+    justify-content: space-between
     .media
       width: 200px
       margin: 30px 28px

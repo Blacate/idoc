@@ -55,7 +55,7 @@ export default {
       this.dots.fill(0)
       this.dots[0] = 1
       setInterval(() => {
-        this.next_pic()
+        // this.next_pic()
       }, 5000)
     })
   }
@@ -68,22 +68,22 @@ export default {
     height: 500px
     position: relative
     .slide
-      width: 1280px
+      width: 1138px
       height: 500px
       position: absolute
       left: 50%
-      margin-left: -640px
+      margin-left: -569px
       display: block
       overflow: hidden
       .slide-group
         width: 3000px
         position: relative
-        left: -1280px
+        left: -1138px
         margin-top: 60px
         display: block
         white-space: nowrap
         .slide-item
-          width: 1280px
+          width: 1138px
           display: inline-block
           text-align: center
           vertical-align: middle
